@@ -1,31 +1,36 @@
-type BookStatus = "available" | "rented" | "lost";
+type TBookStatus = "available" | "rented" | "lost";
 
 class Book {
   #title: string;
   #author: string;
   #year: number;
-  #status: BookStatus;
+  #status: TBookStatus;
 
-  constructor(title: string, author: string, year: number, status: BookStatus) {
+  public constructor(
+    title: string,
+    author: string,
+    year: number,
+    status: TBookStatus,
+  ) {
     this.#title = title;
     this.#author = author;
     this.#year = year;
     this.#status = status;
   }
 
-  get title() {
+  public get title(): string {
     return this.#title;
   }
 
-  get author() {
+  public get author(): string {
     return this.#author;
   }
 
-  get status() {
+  public get status(): TBookStatus {
     return this.#status;
   }
 
-  set status(status: BookStatus) {
+  public set status(status: TBookStatus) {
     this.#status = status;
   }
 }
@@ -33,34 +38,42 @@ class Book {
 class Library {
   #books: Book[];
 
-  constructor() {
+  public constructor() {
     this.#books = [];
   }
 
-  addBook(book: Book) {
+  public addBook(book: Book): void {
     this.#books.push(book);
   }
 
-  borrowBook(title: string) {
-    const book = this.#books.find((book) => book.title === title);
+  public borrowBook(title: string): void {
+    const book: Book | undefined = this.#books.find(
+      (book: Book) => book.title === title,
+    );
 
     if (book) book.status = "rented";
   }
 
-  returnBook(title: string) {
-    const book = this.#books.find((book) => book.title === title);
+  public returnBook(title: string): void {
+    const book: Book | undefined = this.#books.find(
+      (book: Book) => book.title === title,
+    );
 
     if (book) book.status = "available";
   }
 
-  findBooksByAuthor(author: string) {
-    const result = this.#books.filter((book) => book.author === author);
+  public findBooksByAuthor(author: string): Book[] {
+    const result: Book[] = this.#books.filter(
+      (book: Book) => book.author === author,
+    );
 
     return result;
   }
 
-  findBooksByStatus(status: BookStatus) {
-    const result = this.#books.filter((book) => book.status === status);
+  public findBooksByStatus(status: TBookStatus): Book[] {
+    const result: Book[] = this.#books.filter(
+      (book: Book) => book.status === status,
+    );
 
     return result;
   }

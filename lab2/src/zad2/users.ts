@@ -1,6 +1,12 @@
-export type User = (typeof users)[number];
+export interface User {
+  id: number;
+  name: string;
+  age: number;
+  gender: string;
+  location: string;
+}
 
-export const users = [
+export const users: User[] = [
   {
     id: 1,
     name: "Anna",

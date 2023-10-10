@@ -1,28 +1,28 @@
-function fun1(arg: number, cb: (value: number) => void) {
+function fun1(arg: number, cb: (value: number) => void): void {
   setTimeout(() => {
     cb(arg + 2);
   }, 2000);
 }
 
-function fun2(arg: number, cb: (value: number) => void) {
+function fun2(arg: number, cb: (value: number) => void): void {
   setTimeout(() => {
     cb(arg * 3);
   }, 1000);
 }
 
-function fun3(arg: number, cb: (value: number) => void) {
+function fun3(arg: number, cb: (value: number) => void): void {
   setTimeout(() => {
     cb(arg - 1);
   }, 1500);
 }
 
 function sequenceCalculations(
-  funArr: Array<typeof fun1>,
+  funArr: (typeof fun1)[],
   cb: (num: number) => void,
-) {
-  function helper(index: number, acc: number) {
+): void {
+  function helper(index: number, acc: number): void {
     if (index < funArr.length)
-      funArr[index](acc, (value) => {
+      funArr[index](acc, (value: number) => {
         helper(index + 1, value);
       });
     else cb(acc);

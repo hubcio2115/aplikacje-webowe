@@ -1,8 +1,14 @@
 import { users, type User } from "./users";
 
-export type Question = (typeof questionsChatGpt)[number];
+export interface Question {
+  id: number;
+  question: string;
+  answer: string;
+  timestamp: string;
+  user: User;
+}
 
-export const questionsChatGpt = [
+export const questionsChatGpt: Question[] = [
   {
     id: 1,
     question: "Jakie są najnowsze trendy w modzie?",

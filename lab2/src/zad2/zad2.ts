@@ -4,14 +4,19 @@ import {
   type Question,
 } from "./questions-chatgpt";
 
-type TopThreeWordsResult = { word: string; count: number }[];
+interface TTopThreeWordsResult {
+  word: string;
+  count: number;
+}
 
-function topThreeWords(questionsChatGpt: Question[]) {
-  const questions = questionsChatGpt.map(({ question }) => question);
+function topThreeWords(questionsChatGpt: Question[]): TTopThreeWordsResult[] {
+  const questions: string[] = questionsChatGpt.map(
+    ({ question }: Question) => question,
+  );
 
   const wordCounter: Record<string, number> = {};
   for (const question of questions) {
-    const words = question.split(" ");
+    const words: string[] = question.split(" ");
 
     for (const word of words) {
       wordCounter[word]
@@ -20,17 +25,21 @@ function topThreeWords(questionsChatGpt: Question[]) {
     }
   }
 
-  const result = Object.entries(wordCounter)
-    .toSorted((a, b) => b[1] - a[1])
+  const result: TTopThreeWordsResult[] = Object.entries(wordCounter)
+    .toSorted((a: [string, number], b: [string, number]) => b[1] - a[1])
     .slice(0, 3)
-    .reduce((acc: TopThreeWordsResult, [key, value]) => {
-      return [...acc, { word: key, count: value }];
-    }, []);
+    .reduce(
+      (acc: TTopThreeWordsResult[], [key, value]: [string, number]) => [
+        ...acc,
+        { word: key, count: value },
+      ],
+      [],
+    );
 
   return result;
 }
 
-const topThree = topThreeWords(questions);
+const topThree: TTopThreeWordsResult[] = topThreeWords(questions);
 console.log(topThree);
 
 // Oczekiwany output
