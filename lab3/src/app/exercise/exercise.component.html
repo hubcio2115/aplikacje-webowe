@@ -1,0 +1,5 @@
+<ol class="flex list-decimal flex-col">
+  <li *ngFor="let question of topThreeWords()">
+    "{{ question.word }}": {{ question.count }}
+  </li>
+</ol>
