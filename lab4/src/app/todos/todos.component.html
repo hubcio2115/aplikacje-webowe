@@ -1,0 +1,46 @@
+<div class="flex flex-col gap-4">
+  <input
+    type="text"
+    #todo
+    placeholder="New todo"
+    class="rounded-md border border-black px-2 py-1"
+  />
+
+  <div class="flex gap-2">
+    <button
+      type="button"
+      (click)="addTodo(todo.value)"
+      class="rounded-md border border-blue-500 bg-blue-400 px-2 py-1 text-blue-900"
+    >
+      Add Todo
+    </button>
+
+    <button
+      type="button"
+      (click)="deleteCheckedTodos()"
+      class="rounded-md border border-red-500 bg-red-400 px-2 py-1 text-red-900"
+    >
+      Delete Checked Todos
+    </button>
+  </div>
+</div>
+
+<h1 *ngIf="!todos.length; else todoList" class="mt-4">No todos added yet.</h1>
+
+<ng-template #todoList>
+  <ul class="mt-4 flex flex-col gap-4">
+    <li *ngFor="let todo of todos" class="flex gap-3 border-b border-black">
+      <input
+        type="checkbox"
+        [value]="todo.checked"
+        (change)="toggleTodo(todo.id)"
+      />
+
+      <p [class]="clsx(todo.checked ? 'line-through' : '')">
+        {{ todo.body }}
+      </p>
+
+      <button type="button" (click)="deleteTodo(todo.id)">Delete</button>
+    </li>
+  </ul>
+</ng-template>

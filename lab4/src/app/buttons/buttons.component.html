@@ -1,0 +1,27 @@
+<div class="flex gap-4 p-10">
+  <app-counter [counter]="counter" />
+
+  <button
+    type="button"
+    class="rounded-md border border-blue-500 bg-blue-400 px-2 py-1 text-blue-900"
+    (click)="start()"
+  >
+    Start
+  </button>
+
+  <button
+    type="button"
+    class="rounded-md border border-blue-500 bg-blue-400 px-2 py-1 text-blue-900"
+    (click)="stop()"
+  >
+    Stop
+  </button>
+
+  <button
+    type="button"
+    class="rounded-md border border-blue-500 bg-blue-400 px-2 py-1 text-blue-900"
+    (click)="reset()"
+  >
+    Reset
+  </button>
+</div>
