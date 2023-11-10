@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { ProductsModule } from './products/products.module';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import loadProducts, { type Product } from './shared/data';
@@ -13,7 +12,6 @@ import { ProductFormComponent } from './products/product-form/product-form.compo
   imports: [
     CommonModule,
     RouterOutlet,
-    ProductsModule,
     ButtonsComponent,
     ProductListComponent,
     ProductFormComponent,
