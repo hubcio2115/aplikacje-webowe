@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-counter',
+  selector: 'app-modal',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './counter.component.html',
+  templateUrl: './modal.component.html',
 })
-export class CounterComponent {
-  @Input({ required: true }) counter!: number;
+export class ModalComponent {
+  @Input({ required: true }) body!: string;
 }

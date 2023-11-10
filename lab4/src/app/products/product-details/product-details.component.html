@@ -1,0 +1,42 @@
+<li class="flex gap-3 border-b border-black">
+  @if(!isBoughtList) {
+  <input type="checkbox" [(ngModel)]="product.checked" />
+  }
+
+  <p [class]="clsx(product.checked ? 'line-through' : '')">
+    <span>{{ product | product }}</span>
+  </p>
+
+  @if(!isBoughtList) {
+  <div class="flex gap-2 ml-auto mr-0">
+    <button
+      class="p-1 border-green-500 border rounded-md"
+      (click)="changeQuantity(1)"
+    >
+      <lucide-icon [img]="PlusIcon" class="w-[1rem] h-[1rem] text-green-500" />
+    </button>
+
+    <button
+      class="p-1 border-blue-500 border rounded-md"
+      (click)="changeQuantity(-1)"
+    >
+      <lucide-icon [img]="MinusIcon" class="w-[1rem] h-[1rem] text-blue-500" />
+    </button>
+
+    <button
+      type="button"
+      class="p-1 border-red-900 border bg-red-400 rounded-md"
+      (click)="toggleModal()"
+    >
+      <lucide-icon [img]="TrashIcon" class="w-[1rem] h-[1rem] text-red-900" />
+    </button>
+  </div>
+  }
+</li>
+
+@if (showModal) {
+<app-modal [body]="modalBody(product.name, product.quantity)">
+  <button (click)="toggleModal()">No</button>
+  <button (click)="handleProductDelete(product.id)">Yes</button>
+</app-modal>
+}

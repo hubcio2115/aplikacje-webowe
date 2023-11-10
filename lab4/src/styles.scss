@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$font-weights: (
+  "UltraBlack" 900,
+  "Black" 800,
+  "Bold" 700,
+  "SemiBold" 600,
+  "Regular" 500,
+  "Medium" 400,
+  "Thin" 300,
+  "Light" 200,
+  "UltraLight" 100
+);
+
+@each $weight, $value in $font-weights {
+  @font-face {
+    font-family: "Geist";
+    src: url("./assets/geist-sans/Geist-#{$weight}.woff2") format("woff2") #{$value};
+  }
+}
+
+@each $weight, $value in $font-weights {
+  @font-face {
+    font-family: "Geist Mono";
+    src: url("./assets/geist-mono/GeistMono-#{$weight}.woff2") format("woff2") #{$value};
+  }
+}
+
+@layer base {
+  html {
+    font-family: "Geist", system-ui, sans-serif;
+  }
+}
