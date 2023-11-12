@@ -1,0 +1,11 @@
+<div class="min-h-screen flex flex-col">
+  <app-book-form (addBook)="addBook($event)" class="mx-auto mt-4" />
+
+  <app-book-list
+    [books]="books"
+    (deleteBook)="deleteBook($event)"
+    class="mt-4"
+  />
+</div>
+
+<router-outlet></router-outlet>

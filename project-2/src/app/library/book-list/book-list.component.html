@@ -1,0 +1,17 @@
+<ul class="flex flex-col w-[600px] mx-auto gap-4">
+  @for (book of books; track book.id) {
+  <li class="flex">
+    <span>{{ book | book: 30 }}</span>
+
+    <button
+      type="button"
+      (click)="handleDeleteBook(book.id)"
+      class="border border-red-900 transition bg-red-500 ml-auto mr-0 rounded-md p-1"
+    >
+      <lucide-icon [img]="Trash2Icon" class="text-red-900 h-4 w-4" />
+    </button>
+  </li>
+  } @empty {
+  <h1 class="text-2xl font-bold m-auto">No book added yet...</h1>
+  }
+</ul>
