@@ -1,0 +1,11 @@
+<ul class="mt-4 flex flex-col flex-1 gap-4 overflow-y-auto">
+  @for (product of products; track product.id) {
+  <app-product-details
+    [product]="product"
+    [isBoughtList]="isBoughtList"
+    (deleteProduct)="handleDeleteProduct($event)"
+  />
+  } @empty {
+  <h1 class="mt-4">No products added yet.</h1>
+  }
+</ul>

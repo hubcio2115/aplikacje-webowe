@@ -1,0 +1,26 @@
+<div class="flex flex-col gap-4">
+  <input
+    type="text"
+    placeholder="New product"
+    [(ngModel)]="newProduct"
+    class="rounded-md border border-black px-2 py-1"
+  />
+
+  <div class="flex gap-2">
+    <button
+      type="button"
+      (click)="handleAddProduct(newProduct)"
+      class="rounded-md border border-blue-500 bg-blue-400 px-2 py-1 text-blue-900"
+    >
+      Add Product
+    </button>
+
+    <button
+      type="button"
+      (click)="handleDeleteCheckedProducts()"
+      class="rounded-md border border-red-500 bg-red-400 px-2 py-1 text-red-900"
+    >
+      Buy Checked Products
+    </button>
+  </div>
+</div>
