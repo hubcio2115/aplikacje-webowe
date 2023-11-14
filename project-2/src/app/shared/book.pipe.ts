@@ -6,7 +6,7 @@ import type { Book } from './book.type';
   standalone: true,
 })
 export class BookPipe implements PipeTransform {
-  transform({ title, year }: Book, maxLength?: number): string {
+  public transform({ title, year }: Book, maxLength?: number): string {
     return `${title.slice(0, maxLength)}${
       title.length >= 30 ? '...' : ''
     } (published in: ${year})`;

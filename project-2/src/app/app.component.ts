@@ -14,26 +14,30 @@ import data from './shared/data';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  books: Book[] = [];
+  protected books: Book[] = [];
 
-  ngOnInit() {
+  public ngOnInit(): void {
     setTimeout(() => {
       this.books = data;
     }, 2000);
   }
 
-  addBook(book: AddBookForm) {
+  protected addBook(book: AddBookForm): void {
     this.books.push({ id: uuidv4(), rented: false, ...book });
   }
 
-  deleteBook(bookUUID: string) {
-    const bookIndex = this.books.findIndex((book) => book.id === bookUUID);
+  protected deleteBook(bookUUID: string): void {
+    const bookIndex: number = this.books.findIndex(
+      (book: Book) => book.id === bookUUID,
+    );
 
     this.books.splice(bookIndex, 1);
   }
 
-  toggleBook(title: string) {
-    const book = this.books.find((book) => book.title === title);
+  protected toggleBook(title: string): void {
+    const book: Book | undefined = this.books.find(
+      (book: Book) => book.title === title,
+    );
 
     if (book) book.rented = !book.rented;
   }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Book as BookIcon, LucideAngularModule } from 'lucide-angular';
 import type { AddBookForm } from '../../shared/book.type';
+import { type LucideIconData } from 'lucide-angular/icons/types';
 
 const initialValues: AddBookForm = {
   title: '',
@@ -17,21 +18,22 @@ const initialValues: AddBookForm = {
   templateUrl: './book-form.component.html',
 })
 export class BookFormComponent {
-  @Output() addBook = new EventEmitter<AddBookForm>();
+  @Output() public addBook: EventEmitter<AddBookForm> =
+    new EventEmitter<AddBookForm>();
 
-  title = initialValues.title;
-  author = initialValues.author;
-  year = initialValues.year;
+  protected title: string = initialValues.title;
+  protected author: string = initialValues.author;
+  protected year: number = initialValues.year;
 
-  readonly BookIcon = BookIcon;
+  protected readonly BookIcon: LucideIconData = BookIcon;
 
-  resetForm() {
+  protected resetForm(): void {
     this.title = initialValues.title;
     this.author = initialValues.author;
     this.year = initialValues.year;
   }
 
-  handleAddBook() {
+  protected handleAddBook(): void {
     if (confirm('Are you sure?')) {
       this.addBook.emit({
         title: this.title,
