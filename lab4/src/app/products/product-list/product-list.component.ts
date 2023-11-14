@@ -11,11 +11,12 @@ import { Product } from '../../shared/data';
   templateUrl: './product-list.component.html',
 })
 export class ProductListComponent {
-  @Input({ required: true }) products!: Product[];
-  @Input({ required: false }) isBoughtList = false;
-  @Output() deleteProduct = new EventEmitter<number>();
+  @Input({ required: true }) public products!: Product[];
+  @Input({ required: false }) public isBoughtList: boolean = false;
+  @Output() public deleteProduct: EventEmitter<number> =
+    new EventEmitter<number>();
 
-  handleDeleteProduct(productId: number) {
+  protected handleDeleteProduct(productId: number): void {
     this.deleteProduct.emit(productId);
   }
 }

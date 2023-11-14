@@ -19,20 +19,20 @@ import { ProductFormComponent } from './products/product-form/product-form.compo
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  products: Product[] = [];
-  boughtProducts: Product[] = [];
+  protected products: Product[] = [];
+  protected boughtProducts: Product[] = [];
 
-  ngOnInit() {
-    loadProducts().then((products) => {
+  public ngOnInit(): void {
+    loadProducts().then((products: Product[]) => {
       this.products = products;
     });
   }
 
-  addProduct(newProduct: string) {
+  protected addProduct(newProduct: string): void {
     if (!newProduct.length) return;
 
-    const productAlreadyInList = this.products.find(
-      (product) => product.name === newProduct,
+    const productAlreadyInList: Product | undefined = this.products.find(
+      (product: Product) => product.name === newProduct,
     );
 
     if (productAlreadyInList)
@@ -47,15 +47,15 @@ export class AppComponent implements OnInit {
       });
   }
 
-  deleteProduct(productId: number) {
-    const indexToRemove = this.products.findIndex(
-      (product) => product.id === productId,
+  protected deleteProduct(productId: number): void {
+    const indexToRemove: number = this.products.findIndex(
+      (product: Product) => product.id === productId,
     );
 
     this.products.splice(indexToRemove, 1);
   }
 
-  buyCheckedProducts() {
+  protected buyCheckedProducts(): void {
     const newProducts: Product[] = [];
 
     for (const product of this.products) {

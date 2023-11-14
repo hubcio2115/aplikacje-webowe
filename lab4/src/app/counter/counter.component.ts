@@ -8,5 +8,5 @@ import { CommonModule } from '@angular/common';
   templateUrl: './counter.component.html',
 })
 export class CounterComponent {
-  @Input({ required: true }) counter!: number;
+  @Input({ required: true }) public counter!: number;
 }

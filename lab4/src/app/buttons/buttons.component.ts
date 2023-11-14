@@ -9,10 +9,10 @@ import { CounterComponent } from '../counter/counter.component';
   templateUrl: './buttons.component.html',
 })
 export class ButtonsComponent {
-  counter = 0;
-  intervalId!: ReturnType<typeof setInterval>;
+  protected counter: number = 0;
+  private intervalId!: ReturnType<typeof setInterval>;
 
-  start() {
+  protected start(): void {
     this.stop();
 
     this.intervalId = setInterval(() => {
@@ -20,11 +20,11 @@ export class ButtonsComponent {
     }, 1000);
   }
 
-  reset() {
+  protected reset(): void {
     this.counter = 0;
   }
 
-  stop() {
+  protected stop(): void {
     clearInterval(this.intervalId);
   }
 }

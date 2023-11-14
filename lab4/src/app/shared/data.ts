@@ -1,4 +1,11 @@
-const products = [
+export interface Product {
+  id: number;
+  name: string;
+  checked: boolean;
+  quantity: number;
+}
+
+const products: Product[] = [
   {
     id: 1,
     name: 'Product 1',
@@ -121,10 +128,8 @@ const products = [
   },
 ];
 
-export type Product = (typeof products)[number];
-
-export default function loadProducts(): Promise<Product[]> {
-  return new Promise((res) => {
+export default async function loadProducts(): Promise<Product[]> {
+  return new Promise((res: (value: Product[]) => void) => {
     setTimeout(() => {
       res(products);
     }, 2000);

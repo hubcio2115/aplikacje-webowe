@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { LucideAngularModule, Minus, Plus, Trash2 } from 'lucide-angular';
 import { ProductPipe } from '../../shared/product.pipe';
+import { LucideIconData } from 'lucide-angular/icons/types';
 
 @Component({
   selector: 'app-product-details',
@@ -20,31 +21,32 @@ import { ProductPipe } from '../../shared/product.pipe';
   templateUrl: './product-details.component.html',
 })
 export class ProductDetailsComponent {
-  @Input({ required: true }) product!: Product;
-  @Input({ required: false }) isBoughtList = false;
-  @Output() deleteProduct = new EventEmitter<number>();
+  @Input({ required: true }) public product!: Product;
+  @Input({ required: false }) public isBoughtList: boolean = false;
+  @Output() public deleteProduct: EventEmitter<number> =
+    new EventEmitter<number>();
 
-  readonly PlusIcon = Plus;
-  readonly MinusIcon = Minus;
-  readonly TrashIcon = Trash2;
+  protected readonly PlusIcon: LucideIconData = Plus;
+  protected readonly MinusIcon: LucideIconData = Minus;
+  protected readonly TrashIcon: LucideIconData = Trash2;
 
-  showModal = false;
+  protected showModal: boolean = false;
 
-  modalBody(name: string, quantity: number) {
+  protected modalBody(name: string, quantity: number): string {
     return `Are you sure you want to delete: ${name} (quantity: ${quantity})?`;
   }
 
-  changeQuantity(amount: number) {
+  protected changeQuantity(amount: number): void {
     this.product.quantity += amount;
   }
 
-  toggleModal() {
+  protected toggleModal(): void {
     this.showModal = !this.showModal;
   }
 
-  handleProductDelete(productId: number) {
+  protected handleProductDelete(productId: number): void {
     this.deleteProduct.emit(productId);
   }
 
-  readonly clsx = clsx;
+  protected readonly clsx: typeof clsx = clsx;
 }

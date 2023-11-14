@@ -8,5 +8,5 @@ import { CommonModule } from '@angular/common';
   templateUrl: './modal.component.html',
 })
 export class ModalComponent {
-  @Input({ required: true }) body!: string;
+  @Input({ required: true }) public body!: string;
 }

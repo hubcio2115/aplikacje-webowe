@@ -9,16 +9,18 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './product-form.component.html',
 })
 export class ProductFormComponent {
-  @Output() addProduct = new EventEmitter<string>();
-  @Output() deleteCheckedProductsts = new EventEmitter<void>();
+  @Output() public addProduct: EventEmitter<string> =
+    new EventEmitter<string>();
+  @Output() public deleteCheckedProductsts: EventEmitter<void> =
+    new EventEmitter<void>();
 
-  newProduct = '';
+  protected newProduct: string = '';
 
-  handleAddProduct(newProductBody: string) {
+  protected handleAddProduct(newProductBody: string): void {
     this.addProduct.emit(newProductBody);
   }
 
-  handleDeleteCheckedProducts() {
+  protected handleDeleteCheckedProducts(): void {
     this.deleteCheckedProductsts.emit();
   }
 }

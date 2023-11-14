@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { type Product } from './data';
 
-function capitalize(value: string) {
+function capitalize(value: string): string {
   if (value.length === 0) return value;
 
   return `${value[0].toUpperCase()}${value.slice(1)}`;
@@ -13,7 +13,7 @@ function capitalize(value: string) {
   pure: false,
 })
 export class ProductPipe implements PipeTransform {
-  transform(value: Product): string {
+  public transform(value: Product): string {
     return `${capitalize(value.name)} (quantity: ${value.quantity})`;
   }
 }
