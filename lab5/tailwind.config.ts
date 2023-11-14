@@ -1,8 +1,8 @@
 import { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
-const config = {
-  content: ['./src/**/*.{html,ts}'],
+const config: Config = {
+  content: ['./src/app/**/*.{html,ts}'],
   theme: {
     fontFamily: {
       sans: ['Geist', ...fontFamily.sans],
@@ -11,6 +11,6 @@ const config = {
     extend: {},
   },
   plugins: [],
-} satisfies Config;
+};
 
 export default config;

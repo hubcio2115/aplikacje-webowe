@@ -4,21 +4,30 @@
   <hr />
 
   <div class="flex justify-center gap-10 mt-4 pb-4">
+    <div>
+      <h1>Last Added Product:</h1>
+      @if (lastAddedProduct) {
+        <p>{{ lastAddedProduct.name }}</p>
+      } @else {
+        <p>Nothing's been added yet.</p>
+      }
+    </div>
+
     <div class="flex flex-col w-[400px]">
       <app-product-form
-        (addProduct)="addProduct($event)"
-        (deleteCheckedProductsts)="buyCheckedProducts()"
+        (addProduct)="productService.addProduct($event)"
+        (deleteCheckedProductsts)="productService.buyCheckedProducts()"
       />
 
       <app-product-list
-        [products]="products"
-        (deleteProduct)="deleteProduct($event)"
+        [products]="productService.products"
+        (deleteProduct)="productService.deleteProduct($event)"
       />
     </div>
 
     <app-product-list
       [isBoughtList]="true"
-      [products]="boughtProducts"
+      [products]="productService.boughtProducts"
       class="w-[400px]"
     />
   </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CounterComponent } from '../counter/counter.component';
+import { CounterComponent } from '~/app/components/counter/counter.component';
 
 @Component({
   selector: 'app-buttons',

@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Product } from '../../shared/data';
-import clsx from 'clsx';
-import { ModalComponent } from '../../shared/modal/modal.component';
+import { BoughtProduct } from '~/app/shared/data';
+import { ModalComponent } from '~/app/shared/modal/modal.component';
 import { LucideAngularModule, Minus, Plus, Trash2 } from 'lucide-angular';
-import { ProductPipe } from '../../shared/product.pipe';
+import { ProductPipe } from '~/app/shared/product.pipe';
 import { LucideIconData } from 'lucide-angular/icons/types';
 
 @Component({
@@ -21,7 +20,7 @@ import { LucideIconData } from 'lucide-angular/icons/types';
   templateUrl: './product-details.component.html',
 })
 export class ProductDetailsComponent {
-  @Input({ required: true }) public product!: Product;
+  @Input({ required: true }) public product!: BoughtProduct;
   @Input({ required: false }) public isBoughtList: boolean = false;
   @Output() public deleteProduct: EventEmitter<number> =
     new EventEmitter<number>();
@@ -47,6 +46,4 @@ export class ProductDetailsComponent {
   protected handleProductDelete(productId: number): void {
     this.deleteProduct.emit(productId);
   }
-
-  protected readonly clsx: typeof clsx = clsx;
 }

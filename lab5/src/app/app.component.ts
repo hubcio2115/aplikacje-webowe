@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { ButtonsComponent } from './buttons/buttons.component';
-import { ProductListComponent } from './products/product-list/product-list.component';
-import loadProducts, { type Product } from './shared/data';
-import { ProductFormComponent } from './products/product-form/product-form.component';
+import { ButtonsComponent } from '~/app/components/buttons/buttons.component';
+import { ProductListComponent } from '~/app/components/products/product-list/product-list.component';
+import { ProductFormComponent } from '~/app/components/products/product-form/product-form.component';
+import { ProductService } from '~/app/services/product.service';
+import { LastAddedProductService } from './services/last-added-product.service';
+import { type Product } from './shared/data';
 
 @Component({
   selector: 'app-root',
@@ -18,51 +20,21 @@ import { ProductFormComponent } from './products/product-form/product-form.compo
   ],
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
-  protected products: Product[] = [];
-  protected boughtProducts: Product[] = [];
+export class AppComponent implements OnInit, OnDestroy {
+  protected readonly productService: ProductService = inject(ProductService);
+  protected readonly lastAddedProductService: LastAddedProductService = inject(
+    LastAddedProductService,
+  );
 
-  public ngOnInit(): void {
-    loadProducts().then((products: Product[]) => {
-      this.products = products;
+  protected lastAddedProduct!: Product;
+
+  ngOnInit(): void {
+    this.lastAddedProductService.lastAddedProduct$.subscribe((newValue) => {
+      this.lastAddedProduct = newValue;
     });
   }
 
-  protected addProduct(newProduct: string): void {
-    if (!newProduct.length) return;
-
-    const productAlreadyInList: Product | undefined = this.products.find(
-      (product: Product) => product.name === newProduct,
-    );
-
-    if (productAlreadyInList)
-      alert('You cannot add product that already exists.');
-
-    if (confirm('Are you sure about that?'))
-      this.products.push({
-        id: this.products.length + 1,
-        name: newProduct,
-        checked: false,
-        quantity: 1,
-      });
-  }
-
-  protected deleteProduct(productId: number): void {
-    const indexToRemove: number = this.products.findIndex(
-      (product: Product) => product.id === productId,
-    );
-
-    this.products.splice(indexToRemove, 1);
-  }
-
-  protected buyCheckedProducts(): void {
-    const newProducts: Product[] = [];
-
-    for (const product of this.products) {
-      if (product.checked) this.boughtProducts.push(product);
-      else newProducts.push(product);
-    }
-
-    this.products = newProducts;
+  ngOnDestroy(): void {
+    this.lastAddedProductService.lastAddedProduct$.unsubscribe();
   }
 }

@@ -21,11 +21,14 @@
     "@angular/platform-server": "^17.0.0-next.0",
     "@angular/router": "^17.0.0-next.0",
     "@angular/ssr": "^17.0.0-rc.5",
-    "clsx": "^2.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "express": "^4.18.2",
     "lucide-angular": "^0.292.0",
+    "prettier": "^3.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "zod": "^3.22.4",
     "zone.js": "~0.14.0"
   },
   "devDependencies": {

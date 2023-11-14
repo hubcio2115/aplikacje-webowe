@@ -1,9 +1,23 @@
-export interface Product {
-  id: number;
-  name: string;
-  checked: boolean;
-  quantity: number;
-}
+import { z } from 'zod';
+
+// eslint-disable-next-line
+export const productSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  checked: z.boolean(),
+  quantity: z.number(),
+});
+export type Product = z.infer<typeof productSchema>;
+
+// eslint-disable-next-line
+export const boughtProductSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  checked: z.boolean(),
+  quantity: z.number(),
+  bought: z.date().optional(),
+});
+export type BoughtProduct = z.infer<typeof boughtProductSchema>;
 
 const products: Product[] = [
   {
