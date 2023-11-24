@@ -7,6 +7,7 @@ import { ProductFormComponent } from '~/app/components/products/product-form/pro
 import { ProductService } from '~/app/services/product.service';
 import { LastAddedProductService } from './services/last-added-product.service';
 import { type Product } from './shared/data';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -25,16 +26,18 @@ export class AppComponent implements OnInit, OnDestroy {
   protected readonly lastAddedProductService: LastAddedProductService = inject(
     LastAddedProductService,
   );
+  #lastAddedProductSubscription!: Subscription;
 
   protected lastAddedProduct!: Product;
 
   ngOnInit(): void {
-    this.lastAddedProductService.lastAddedProduct$.subscribe((newValue) => {
-      this.lastAddedProduct = newValue;
-    });
+    this.#lastAddedProductSubscription =
+      this.lastAddedProductService.lastAddedProduct$.subscribe((newValue) => {
+        this.lastAddedProduct = newValue;
+      });
   }
 
   ngOnDestroy(): void {
-    this.lastAddedProductService.lastAddedProduct$.unsubscribe();
+    this.#lastAddedProductSubscription.unsubscribe();
   }
 }
