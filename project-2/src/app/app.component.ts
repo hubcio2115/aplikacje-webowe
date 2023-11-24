@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { BookFormComponent } from './library/book-form/book-form.component';
@@ -13,13 +13,18 @@ import data from './shared/data';
   imports: [CommonModule, RouterOutlet, BookFormComponent, BookListComponent],
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   protected books: Book[] = [];
+  private timeout!: ReturnType<typeof setTimeout>;
 
   public ngOnInit(): void {
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.books = data;
     }, 2000);
+  }
+
+  public ngOnDestroy(): void {
+    clearTimeout(this.timeout);
   }
 
   protected addBook(book: AddBookForm): void {
