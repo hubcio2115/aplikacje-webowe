@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataEmitterService } from '../../services/data-emitter.service';
 import { Subscription, map, tap } from 'rxjs';
@@ -10,7 +10,6 @@ import { Subscription, map, tap } from 'rxjs';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  dataService = inject(DataEmitterService);
   subscriberA!: Subscription;
   subscriberB!: Subscription;
   subscriberC!: Subscription;
@@ -20,6 +19,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   dataA: number | undefined;
   dataB: number | undefined;
   dataC: number | undefined;
+
+  constructor(private dataService: DataEmitterService) {}
 
   ngOnInit(): void {
     this.subscriberA = this.dataService.data$

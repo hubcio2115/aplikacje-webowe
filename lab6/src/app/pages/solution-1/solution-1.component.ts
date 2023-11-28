@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NumberEmitterService } from '../../services/number-emitter.service';
 import { Subscription, filter, map, take } from 'rxjs';
@@ -10,9 +10,10 @@ import { Subscription, filter, map, take } from 'rxjs';
   templateUrl: './solution-1.component.html',
 })
 export class Solution1Component implements OnInit, OnDestroy {
-  numberEmitterService = inject(NumberEmitterService);
   numberSubscription!: Subscription;
   evenNumbers: number[] = [];
+
+  constructor(private numberEmitterService: NumberEmitterService) {}
 
   ngOnInit(): void {
     this.numberSubscription = this.numberEmitterService
