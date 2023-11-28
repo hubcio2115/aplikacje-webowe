@@ -1,0 +1,109 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-col max-w-[400px] mx-auto">
+    <label for="firstName" class="capitalize">first name:</label>
+    <input
+      type="text"
+      id="firstName"
+      name="firstName"
+      formControlName="firstName"
+      [class]="
+        clsx(
+          'rounded-md border border-black p-1',
+          userForm.get('firstName')?.errors ? 'border-red' : ''
+        )
+      "
+    />
+    @switch (true) {
+      @case (userForm.get("firstName")?.hasError("required")) {
+        <p class="text-red-900">User first name is required.</p>
+      }
+      @case (userForm.get("firstName")?.hasError("pattern")) {
+        <p class="text-red-900">
+          First Name has to start with a capital letter, contain only letters
+          and have at least 3 characters.
+        </p>
+      }
+    }
+
+    <label for="lastName" class="capitalize">last name:</label>
+    <input
+      type="text"
+      id="lastName"
+      name="lastName"
+      formControlName="lastName"
+      [class]="
+        clsx(
+          'rounded-md border border-black p-1',
+          userForm.get('lastName')?.errors ? 'border-red' : ''
+        )
+      "
+    />
+    @switch (true) {
+      @case (userForm.get("lastName")?.hasError("required")) {
+        <p class="text-red-900">User last name is required.</p>
+      }
+      @case (userForm.get("lastName")?.hasError("pattern")) {
+        <p class="text-red-900">
+          First Name has to start with a capital letter, contain only letters
+          and have at least 3 characters.
+        </p>
+      }
+    }
+
+    <label for="age" class="capitalize">age:</label>
+    <input
+      type="number"
+      id="age"
+      name="age"
+      formControlName="age"
+      [class]="
+        clsx(
+          'rounded-md border border-black p-1',
+          userForm.get('age')?.errors ? 'border-red' : ''
+        )
+      "
+    />
+    @switch (true) {
+      @case (userForm.get("age")?.hasError("required")) {
+        <p class="text-red-900">User age is required.</p>
+      }
+      @case (userForm.get("age")?.hasError("min")) {
+        <p class="text-red-900">Age has to be greater than 0.</p>
+      }
+      @case (userForm.get("lastName")?.hasError("max")) {
+        <p class="text-red-900">Age has to be less than 100.</p>
+      }
+    }
+
+    <label for="postalCode" class="capitalize">postal code:</label>
+    <input
+      type="text"
+      id="postalCode"
+      name="postalCode"
+      formControlName="postalCode"
+      [class]="
+        clsx(
+          'rounded-md border border-black p-1',
+          userForm.get('postalCode')?.errors ? 'border-red' : ''
+        )
+      "
+    />
+    @switch (true) {
+      @case (userForm.get("postalCode")?.hasError("required")) {
+        <p class="text-red-900">Postal code is required.</p>
+      }
+      @case (userForm.get("postalCode")?.hasError("pattern")) {
+        <p class="text-red-900">Postal code has to have a format of 99-999.</p>
+      }
+    }
+
+    <button
+      type="submit"
+      class="capitalize"
+      [disabled]="!userForm.valid"
+      class="border border-black rounded-md p-1 disabled:text-slate-500 disabled:border-slate-500 w-20"
+    >
+      add user
+    </button>
+  </div>
+</form>
