@@ -1,28 +1,40 @@
-## Getting Started
+# Zadanie 1
 
-First, run the development server:
+Stwórz `NumberEmitterService` ze zdefiniowaną metodą `getNumberObservable()`, aby utworzyć observable dla danych liczbowych. Następnie w komponencie angularowym odwołaj się do stworzonego serwisu oraz:
 
-```bash
-yarn dev
-```
+- [x] Stwórz zmienną `evenNumbers` do przechowywania parzystych liczb
+- [x] Stwórz subskrypcję do observable z `NumberEmitterService` w metodzie `ngOnInit` przy użyciu różnych operatorów RxJs:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [x] Wyfiltruj tylko parzyste liczby
+- [x] Podnieś już wyfiltrowane liczby do kwadratu
+- [x] Przypisz przekształcone wartości do zmiennej `evenNumbers`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Wyświetl otrzymane liczby w HTML komponentu.
 
-To create [API routes](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) add an `api/` directory to the `app/` directory with a `route.ts` file. For individual endpoints, create a subfolder in the `api` directory, like `api/hello/route.ts` would map to [http://localhost:3000/api/hello](http://localhost:3000/api/hello).
+# Zadanie 2
 
-## Learn More
+Utwórz w projekcie trzy komponenty:
 
-To learn more about Next.js, take a look at the following resources:
+- [x] Home – zawierający stronę główną
+- [x] Solution 1 – zawierający komponent z rozwiązaniem zadania 1
+- [x] Page not found – opisujący stronę wyświetlaną w przypadku niepoprawnego routingu
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
+Dodaj do aplikacji routing, gdzie nawigacja zostanie opisana w oddzielnym komponencie `NavComponent`. W zależności od aktualnej ścieżki powinien być poprawnie oznaczony odnośnik z aktualnie wyświetlaną stroną. Zadbaj o odpowiednie działanie aplikacji w przypadku ręcznego wpisania niepoprawnej ścieżki.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Zadanie 3
 
-## Deploy on Vercel
+Stwórz `DataEmitterService` zawierający pole `dataSubject` typu `Subject<number | string>`. Następnie dodaj w nim dwie metody:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
+- [x] `emitData(data: any)` – metoda powinna emitować dostarczone dane za pomocą `next` na `dataSubject`
+- [x] `complete()` – metoda powinna zakończyć `dataSubject` poprzez wywołanie `complete`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+W komponencie angularowym:
+
+- [x] Wstrzyknij `DataEmitterService`
+- [x] Stwórz trzy zmienne, np. `dataA`, `dataB`, `dataC`, do przechowywania otrzymanych danych.
+- [x] Stwórz trzy subskrypcje do dataSubject w metodzie `ngOnInit()` przy użyciu operatorów RxJS:
+  - [x] Subskrypcję A, która używa operatora `tap` do zalogowania otrzymanych danych, a następnie używa operatora `map` do przypisania `dataA`
+  - [x] Subskrypcję B, która używa operatora `map` do pomnożenia otrzymanych danych przez 2 i przypisania `dataB`
+  - [x] Subskrypcję C, która używa operatora `tap` do zalogowania "Observable zakończony" po zakończeniu observable, a następnie używa operatora map do przypisania `dataC`
+
+Wywołaj metodę `emitData` w `DataEmitterService` z danymi: 10, 20, 30 w komponencie. Następnie wywołaj metodę `complete` po wyemitowaniu danych. Ostateczne wartości wyświetl w HTML komponentu.

@@ -1,0 +1,9 @@
+<ul>
+  @for (todo of todos; track todo.id) {
+    <li>
+      <input type="checkbox" [(ngModel)]="todo.isComplete" />
+      <span>{{ todo.name }}</span>
+      <button>Delete</button>
+    </li>
+  }
+</ul>

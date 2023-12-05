@@ -1,0 +1,24 @@
+{
+  "todos": [
+    { "id": 1, "name": "Complete project proposal", "isComplete": false },
+    { "id": 2, "name": "Read chapter 3 of the book", "isComplete": false },
+    { "id": 3, "name": "Exercise for 30 minutes", "isComplete": true },
+    { "id": 4, "name": "Prepare grocery list", "isComplete": false },
+    { "id": 5, "name": "Attend team meeting", "isComplete": false },
+    { "id": 6, "name": "Write blog post", "isComplete": false },
+    { "id": 7, "name": "Learn a new recipe", "isComplete": true },
+    { "id": 8, "name": "Complete coding challenge", "isComplete": false },
+    { "id": 9, "name": "Practice mindfulness meditation", "isComplete": true },
+    { "id": 10, "name": "Review project timeline", "isComplete": false },
+    { "id": 11, "name": "Solve math problems", "isComplete": true },
+    { "id": 12, "name": "Plan weekend activities", "isComplete": false },
+    { "id": 13, "name": "Update resume", "isComplete": false },
+    { "id": 14, "name": "Organize desk space", "isComplete": true },
+    { "id": 15, "name": "Call a friend or family member", "isComplete": false },
+    { "id": 16, "name": "Complete online course module", "isComplete": false },
+    { "id": 17, "name": "Create a budget for the month", "isComplete": true },
+    { "id": 18, "name": "Read tech news articles", "isComplete": false },
+    { "id": 19, "name": "Practice a musical instrument", "isComplete": false },
+    { "id": 20, "name": "Watch a documentary", "isComplete": true }
+  ]
+}
