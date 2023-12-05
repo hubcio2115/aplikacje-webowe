@@ -14,10 +14,10 @@
       "
     />
     @switch (true) {
-      @case (userForm.get("firstName")?.hasError("required")) {
+      @case (userForm.controls.firstName.hasError("required")) {
         <p class="text-red-900">User first name is required.</p>
       }
-      @case (userForm.get("firstName")?.hasError("pattern")) {
+      @case (userForm.controls.firstName.hasError("pattern")) {
         <p class="text-red-900">
           First Name has to start with a capital letter, contain only letters
           and have at least 3 characters.
@@ -39,10 +39,10 @@
       "
     />
     @switch (true) {
-      @case (userForm.get("lastName")?.hasError("required")) {
+      @case (userForm.controls.lastName.hasError("required")) {
         <p class="text-red-900">User last name is required.</p>
       }
-      @case (userForm.get("lastName")?.hasError("pattern")) {
+      @case (userForm.controls.lastName.hasError("pattern")) {
         <p class="text-red-900">
           First Name has to start with a capital letter, contain only letters
           and have at least 3 characters.
@@ -64,13 +64,13 @@
       "
     />
     @switch (true) {
-      @case (userForm.get("age")?.hasError("required")) {
+      @case (userForm.controls.age.hasError("required")) {
         <p class="text-red-900">User age is required.</p>
       }
-      @case (userForm.get("age")?.hasError("min")) {
+      @case (userForm.controls.age.hasError("min")) {
         <p class="text-red-900">Age has to be greater than 0.</p>
       }
-      @case (userForm.get("lastName")?.hasError("max")) {
+      @case (userForm.controls.age.hasError("max")) {
         <p class="text-red-900">Age has to be less than 100.</p>
       }
     }
@@ -89,10 +89,10 @@
       "
     />
     @switch (true) {
-      @case (userForm.get("postalCode")?.hasError("required")) {
+      @case (userForm.controls.postalCode.hasError("required")) {
         <p class="text-red-900">Postal code is required.</p>
       }
-      @case (userForm.get("postalCode")?.hasError("pattern")) {
+      @case (userForm.controls.postalCode.hasError("pattern")) {
         <p class="text-red-900">Postal code has to have a format of 99-999.</p>
       }
     }
