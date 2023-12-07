@@ -28,5 +28,8 @@ export const routes: Routes = [
   {
     path: "details/:id",
     component: TodoDetailsComponent,
+    resolve: {
+      todo: todoResolver,
+    },
   },
 ];

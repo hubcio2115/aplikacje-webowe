@@ -1,27 +1,32 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { type Todo, TodosService } from "../../services/todos.service";
-import { Subscription } from "rxjs";
 import { FormsModule } from "@angular/forms";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-todo-list",
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: "./todo-list.component.html",
 })
-export class TodoListComponent implements OnInit, OnDestroy {
+export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
-  todosSubscription!: Subscription;
 
   constructor(readonly todosService: TodosService) {}
 
-  ngOnInit(): void {
-    this.todosSubscription = this.todosService.getAll().subscribe((data) => {
+  getAllTodos() {
+    this.todosService.getAll().subscribe((data) => {
       this.todos = data;
     });
   }
 
-  ngOnDestroy(): void {
-    this.todosSubscription.unsubscribe();
+  deleteTodo(id: Todo["id"]) {
+    this.todosService.deleteTodo(id).subscribe(() => {
+      this.getAllTodos();
+    });
+  }
+
+  ngOnInit(): void {
+    this.getAllTodos();
   }
 }

@@ -1,1 +1,10 @@
-<p>todo-details works!</p>
+<div class="flex flex-col items-start">
+  <input type="checkbox" disabled />
+  <p>
+    {{ todo.name }}
+  </p>
+
+  <a [routerLink]="['/form/', todo.id]">Edit</a>
+  <a class="cursor-pointer" (click)="deleteTodo()">Delete</a>
+  <a class="cursor-pointer" (click)="goBack()">Go back</a>
+</div>

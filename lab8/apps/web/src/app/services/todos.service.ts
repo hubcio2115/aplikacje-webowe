@@ -14,22 +14,22 @@ export class TodosService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<Todo[]>("/api/todos/");
+    return this.http.get<Todo[]>("http://localhost:3000/todos");
   }
 
   getById(id: Todo["id"]) {
-    return this.http.get<Todo>(`/api/todos/${id}`);
+    return this.http.get<Todo>(`http://localhost:3000/todos/${id}`);
   }
 
   addTodo(newTodo: Omit<Todo, "id">) {
-    return this.http.post("/api/todos", newTodo);
+    return this.http.post("http://localhost:3000/todos", newTodo);
   }
 
   editTodo(id: Todo["id"], data: Partial<Omit<Todo, "id">>) {
-    return this.http.patch(`/api/todos/${id}`, data);
+    return this.http.patch(`http://localhost:3000/todos/${id}`, data);
   }
 
   deleteTodo(id: Todo["id"]) {
-    return this.http.delete(`/api/todos/${id}`);
+    return this.http.delete(`http://localhost:3000/todos/${id}`);
   }
 }

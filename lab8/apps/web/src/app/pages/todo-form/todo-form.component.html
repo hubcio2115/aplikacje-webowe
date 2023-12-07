@@ -1,1 +1,18 @@
-<p>todo-form works!</p>
+<form [formGroup]="todoForm" (ngSubmit)="onSubmit()" class="flex flex-col">
+  <div class="flex gap-4">
+    <input type="checkbox" formControlName="isComplete" />
+
+    <input
+      type="text"
+      placeholder="name"
+      formControlName="name"
+      class="border p-1 rounded-md border-black"
+    />
+  </div>
+
+  <button type="submit" class="max-w-[100px]">
+    {{ isEditForm ? "Edit Todo" : "Add Todo" }}
+  </button>
+
+  <a class="cursor-pointer" (click)="goBack()">Go back</a>
+</form>
